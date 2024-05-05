@@ -31,7 +31,7 @@ jobs:
   Semgrep:
     uses: ./.github/workflows/semgrep.yml
     with:
-      command: ${{ secrets.semgrep }}
+      token: ${{ secrets.semgrep }}
 
   Codecov:
     runs-on: ubuntu-latest
