@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
 
     steps:
-      - uses: step-security/harden-runner@6c3b1c91e8873ae0c705b0709f957c7a6a5eaf10
+      - uses: step-security/harden-runner@9ff9d14760a73102d9fa2f47131624137f50ead8
         with:
           disable-sudo: true
           egress-policy: block
@@ -29,16 +29,16 @@ jobs:
             uploads.github.com:443
 
       - name: Checkout repository
-        uses: actions/checkout@8459bc0c7e3759cdf591f513d9f141a95fef0a8f
+        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@4ebadbc7468649cf79b138f45e20d999351f6ed0
+        uses: github/codeql-action/init@84d6ead480f493c32a39f012db4b9dfb02e8868b
         with:
           languages: ${{ inputs.language }}
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@4ebadbc7468649cf79b138f45e20d999351f6ed0
+        uses: github/codeql-action/autobuild@84d6ead480f493c32a39f012db4b9dfb02e8868b
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@4ebadbc7468649cf79b138f45e20d999351f6ed0
+        uses: github/codeql-action/analyze@84d6ead480f493c32a39f012db4b9dfb02e8868b
