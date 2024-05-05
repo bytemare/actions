@@ -10,6 +10,11 @@ jobs:
   scorecard:
     name: Scorecard Analysis
     runs-on: ubuntu-latest
+    permissions:
+      # Needed if using Code scanning alerts
+      security-events: write
+      # Needed for GitHub OIDC token if publish_results is true
+      id-token: write
     steps:
       - uses: step-security/harden-runner@9ff9d14760a73102d9fa2f47131624137f50ead8
         with:
