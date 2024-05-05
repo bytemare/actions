@@ -47,12 +47,19 @@ on:
         required: true
       codecov:
         required: true
+      semgrep:
+        required: true
 
 jobs:
   Cover:
     uses: ./.github/workflows/coverage-go.yml
     with:
       command: ${{ inputs.cover-command }}
+
+  Semgrep:
+    uses: ./.github/workflows/semgrep.yml
+    with:
+      command: ${{ secrets.semgrep }}
 
   Codecov:
     runs-on: ubuntu-latest
