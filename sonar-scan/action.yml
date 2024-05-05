@@ -1,35 +1,9 @@
 name: 'sonar-scan'
 description: 'Scan code with SonarSource'
 inputs:
-  organization:
+  configuration:
     required: true
-    description: "The organization as set up in SonarCloud"
-  project-key:
-    required: true
-    description: "The project key as set up in SonarCloud"
-  sources:
-    required: false
-    description: "Path to source files to be included"
-    default: .
-  exclusions:
-    required: false
-    description: "Path to source files to be excluded"
-  tests:
-    required: false
-    description: "Path to test files to be included"
-  test-exclusions:
-    required: false
-    description: "Path to test files to exclude"
-  verbose:
-    required: false
-    description: "Whether to activate verbose logs"
-    default: 'true'
-  coverage-exclusions:
-    required: false
-    description: "Path to files to exclude from coverage analysis"
-  coverage-report:
-    required: false
-    description: "Path to the coverage report"
+    description: "Path to the configuration file."
 
 runs:
   using: "composite"
@@ -51,12 +25,4 @@ runs:
     - uses: SonarSource/sonarcloud-github-action@6bbd64e0cb2194e04addb429d669a9ee873eeeef
       with:
         args: >
-          -Dsonar.organization=${{ inputs.organization }}
-          -Dsonar.projectKey=${{ inputs.project-key }}
-          -Dsonar.sources=${{ inputs.sources }}
-          -Dsonar.exclusions=${{ inputs.exclusions }}
-          -Dsonar.tests=${{ inputs.tests }}
-          -Dsonar.test.exclusions=${{ inputs.test-exclusions }}
-          -Dsonar.verbose=${{ inputs.verbose }}
-          -Dsonar.coverage.exclusions=${{ inputs.coverage-exclusions }}
-          -Dsonar.go.coverage.reportPaths=${{ inputs.coverage-report }}
+          -Dproject.settings=${{ inputs.configuration }}

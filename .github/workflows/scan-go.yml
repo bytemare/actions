@@ -8,37 +8,9 @@ on:
         required: false
         type: string
         default: go test -v -race -covermode=atomic -coverpkg=./...
-      sonar-organization:
+      sonar-configuration:
         required: true
-        description: "The organization as set up in SonarCloud"
-        type: string
-      sonar-project-key:
-        required: true
-        description: "The project key as set up in SonarCloud"
-        type: string
-      sonar-sources:
-        required: false
-        description: "Path to source files to be included"
-        type: string
-        default: .
-      sonar-exclusions:
-        required: false
-        description: "Path to source files to be excluded"
-        type: string
-      sonar-tests:
-        required: false
-        description: "Path to test files to be included"
-        type: string
-      sonar-test-exclusions:
-        required: false
-        description: "Path to test files to exclude"
-        type: string
-      sonar-verbose:
-        required: false
-        type: boolean
-      sonar-coverage-exclusions:
-        required: false
-        description: "Path to files to exclude from coverage analysis"
+        description: "Path to the configuration file"
         type: string
     secrets:
       github:
@@ -90,12 +62,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github }}
           SONAR_TOKEN: ${{ secrets.sonar }}
         with:
-          organization: ${{ inputs.sonar-organization }}
-          project-key: ${{ inputs.sonar-project-key }}
-          sources: ${{ inputs.sonar-sources }}
-          exclusions: ${{ inputs.sonar-exclusions }}
-          tests: ${{ inputs.sonar-tests }}
-          test-exclusions: ${{ inputs.sonar-test-exclusions }}
-          verbose: ${{ inputs.sonar-verbose }}
-          coverage-exclusions: ${{ inputs.sonar-coverage-exclusions }}
-          coverage-report: ${{ needs.Cover.outputs.coverage-output-file }}
+          configuration: ${{ inputs.sonar-configuration }}
