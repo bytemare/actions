@@ -1,0 +1,62 @@
+name: Test Go
+
+on:
+  workflow_call:
+    inputs:
+      go-mod:
+        description: 'Go mod file'
+        required: false
+        type: string
+        default: ./go.mod
+      command:
+        description: 'The command to use to run the coverage (e.g. go test -cover...)'
+        required: false
+        type: string
+        default: go test -v -race -covermode=atomic -coverpkg=./...
+      output-file:
+        description: 'The output file name to store the coverage results in (defaults to coverage.out)'
+        required: false
+        type: string
+        default: coverage.out
+      scope:
+        description: 'The location to run the command on (defaults to ./...)'
+        required: false
+        type: string
+        default: ./...
+    outputs:
+      coverage-output-artefact:
+        description: 'The name of the artefact to download the code coverage report from'
+        value: code-coverage-report
+      coverage-output-file:
+        description: "Filename of the output coverage report."
+        value: ${{ inputs.output-file }}
+
+jobs:
+  Coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: step-security/harden-runner@6c3b1c91e8873ae0c705b0709f957c7a6a5eaf10
+        with:
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            proxy.golang.org:443
+            storage.googleapis.com:443
+            sum.golang.org:443
+            uploads.github.com:443
+
+      - uses: bytemare/actions/init-go@main
+        with:
+          go-mod: ${{ inputs.go-mod }}
+
+      - name: Run coverage
+        id: cover
+        run: ${{ inputs.command }} -coverprofile=${{ inputs.output-file }} ${{ inputs.scope }}
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@552bf3722c16e81001aea7db72d8cedf64eb5f68
+        with:
+          name: code-coverage-report
+          path: ${{ inputs.output-file }}
+          if-no-files-found: error
+          retention-days: 1
