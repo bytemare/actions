@@ -1,0 +1,94 @@
+name: Code Scanning
+
+on:
+  workflow_call:
+    inputs:
+      cover-command:
+        description: 'The command to use to run the tests (defaults to go test -v -vet=all ./...)'
+        required: false
+        type: string
+        default: go test -v -race -covermode=atomic -coverpkg=./...
+      sonar-organization:
+        required: true
+        description: "The organization as set up in SonarCloud"
+        type: string
+      sonar-project-key:
+        required: true
+        description: "The project key as set up in SonarCloud"
+        type: string
+      sonar-sources:
+        required: false
+        description: "Path to source files to be included"
+        type: string
+        default: .
+      sonar-exclusions:
+        required: false
+        description: "Path to source files to be excluded"
+        type: string
+      sonar-tests:
+        required: false
+        description: "Path to test files to be included"
+        type: string
+      sonar-test-exclusions:
+        required: false
+        description: "Path to test files to exclude"
+        type: string
+      sonar-verbose:
+        required: false
+        type: boolean
+      sonar-coverage-exclusions:
+        required: false
+        description: "Path to files to exclude from coverage analysis"
+        type: string
+    secrets:
+      github:
+        required: true
+      sonar:
+        required: true
+      codecov:
+        required: true
+
+jobs:
+  Cover:
+    uses: ./.github/workflows/coverage-go.yml
+    with:
+      command: ${{ inputs.cover-command }}
+
+  Codecov:
+    runs-on: ubuntu-latest
+    needs: Cover
+    steps:
+      - name: Download code coverage report
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.Cover.outputs.coverage-output-artefact }}
+
+      - uses: bytemare/actions/codecov@main
+        env:
+          CODECOV_TOKEN: ${{ secrets.codecov }}
+        with:
+          coverage-report: ${{ needs.Cover.outputs.coverage-output-file }}
+          
+  Sonar:
+    runs-on: ubuntu-latest
+    needs: Cover
+    steps:
+      - name: Download code coverage report
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.Cover.outputs.coverage-output-artefact }}
+
+      - uses: bytemare/actions/sonar-scan@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.github }}
+          SONAR_TOKEN: ${{ secrets.sonar }}
+        with:
+          organization: ${{ inputs.sonar-organization }}
+          project-key: ${{ inputs.sonar-project-key }}
+          sources: ${{ inputs.sonar-sources }}
+          exclusions: ${{ inputs.sonar-exclusions }}
+          tests: ${{ inputs.sonar-tests }}
+          test-exclusions: ${{ inputs.sonar-test-exclusions }}
+          verbose: ${{ inputs.sonar-verbose }}
+          coverage-exclusions: ${{ inputs.sonar-coverage-exclusions }}
+          coverage-report: ${{ needs.Cover.outputs.coverage-output-file }}

@@ -1,0 +1,32 @@
+name: 'init-go'
+description: 'Check out the repo and setup-go'
+inputs:
+  go-mod:
+    description: 'Go mod file (defaults to ./go.mod)'
+    required: false
+  version:
+    description: 'Go versions to use'
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - uses: step-security/harden-runner@6c3b1c91e8873ae0c705b0709f957c7a6a5eaf10
+      with:
+        disable-sudo: true
+        egress-policy: block
+        allowed-endpoints: >
+          github.com:443
+          proxy.golang.org:443
+          storage.googleapis.com:443
+          sum.golang.org:443
+          
+    - name: Checkout repo
+      uses: actions/checkout@8459bc0c7e3759cdf591f513d9f141a95fef0a8f
+      with:
+        fetch-depth: 0
+
+    - name: Setup Go
+      uses: actions/setup-go@cdcb36043654635271a94b9a6d1392de5bb323a7
+      with:
+        go-version-file: ${{ inputs.go-mod }}
+        go-version: ${{ inputs.go-version }}
