@@ -30,7 +30,7 @@ jobs:
 
   Semgrep:
     uses: ./.github/workflows/semgrep.yml
-    with:
+    secrets:
       token: ${{ secrets.semgrep }}
 
   Codecov:
