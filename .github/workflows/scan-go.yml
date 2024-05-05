@@ -29,9 +29,17 @@ jobs:
       command: ${{ inputs.cover-command }}
 
   Semgrep:
-    uses: ./.github/workflows/semgrep.yml
-    secrets:
-      token: ${{ secrets.semgrep }}
+    runs-on: ubuntu-20.04
+    env:
+      SEMGREP_APP_TOKEN: ${{ secrets.semgrep }}
+    container:
+      image: semgrep/semgrep
+    if: (github.actor != 'dependabot[bot]')
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b
+
+      - run: semgrep ci
 
   Codecov:
     runs-on: ubuntu-latest
