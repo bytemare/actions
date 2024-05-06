@@ -19,6 +19,8 @@ on:
         type: string
         default: ./go.mod
 
+permissions: {}
+
 jobs:
   GolangCI-Lint:
     runs-on: ubuntu-latest

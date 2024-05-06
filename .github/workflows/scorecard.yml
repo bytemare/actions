@@ -6,6 +6,8 @@ on:
       token:
         required: true
 
+permissions: read-all
+
 jobs:
   scorecard:
     name: Scorecard Analysis

@@ -11,17 +11,20 @@ on:
     # random HH:MM to avoid a load spike on GitHub Actions at 00:00
     - cron: '4 1 * * *'
 
-# Declare default permissions as read-only.
-permissions: read-all
+permissions: {}
 
 jobs:
   Lint:
+    permissions:
+      contents: read
     uses: ./.github/workflows/golangci-lint.yml
     with:
       config-path: ./.github/golangci.yml
       scope: ./...
 
   Analyze:
+    permissions:
+      contents: read
     uses: ./.github/workflows/scan-go.yml
     with:
       sonar-configuration: .github/sonar-project.properties

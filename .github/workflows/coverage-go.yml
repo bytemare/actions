@@ -31,6 +31,8 @@ on:
         description: "Filename of the output coverage report."
         value: ${{ inputs.output-file }}
 
+permissions: {}
+
 jobs:
   Coverage:
     runs-on: ubuntu-latest
