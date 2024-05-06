@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Init go
-        uses: bytemare/actions/init-go@main
+        uses: bytemare/actions/init-go@fff7f3d5971cabee271ec8b205f6df633a0f70e5
         with:
           version: ${{ inputs.version }}
 
