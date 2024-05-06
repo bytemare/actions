@@ -7,7 +7,7 @@ import (
 )
 
 // Example_Addition shows how to add numbers.
-func Example_addition() {
+func ExampleAddition() {
 	a := 2
 	b := 3
 
