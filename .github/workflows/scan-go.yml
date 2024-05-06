@@ -22,6 +22,8 @@ on:
       semgrep:
         required: true
 
+permissions: {}
+
 jobs:
   Cover:
     uses: ./.github/workflows/coverage-go.yml
@@ -38,7 +40,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b
-
       - run: semgrep ci
 
   Codecov:
@@ -50,7 +51,7 @@ jobs:
         with:
           name: ${{ needs.Cover.outputs.coverage-output-artefact }}
 
-      - uses: bytemare/actions/codecov@main
+      - uses: bytemare/actions/codecov@fff7f3d5971cabee271ec8b205f6df633a0f70e5
         env:
           CODECOV_TOKEN: ${{ secrets.codecov }}
         with:
@@ -59,13 +60,15 @@ jobs:
   Sonar:
     runs-on: ubuntu-latest
     needs: Cover
+    permissions:
+      contents: read
     steps:
       - name: Download code coverage report
         uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e
         with:
           name: ${{ needs.Cover.outputs.coverage-output-artefact }}
 
-      - uses: bytemare/actions/sonar-scan@main
+      - uses: bytemare/actions/sonar-scan@fff7f3d5971cabee271ec8b205f6df633a0f70e5
         env:
           GITHUB_TOKEN: ${{ secrets.github }}
           SONAR_TOKEN: ${{ secrets.sonar }}

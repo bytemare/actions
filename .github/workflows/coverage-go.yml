@@ -31,6 +31,8 @@ on:
         description: "Filename of the output coverage report."
         value: ${{ inputs.output-file }}
 
+permissions: {}
+
 jobs:
   Coverage:
     runs-on: ubuntu-latest
@@ -45,7 +47,7 @@ jobs:
             sum.golang.org:443
             uploads.github.com:443
 
-      - uses: bytemare/actions/init-go@main
+      - uses: bytemare/actions/init-go@fff7f3d5971cabee271ec8b205f6df633a0f70e5
         with:
           go-mod: ${{ inputs.go-mod }}
 
