@@ -6,7 +6,7 @@ import (
 	"github.com/bytemare/actions/internal"
 )
 
-// Example_Addition shows how to add numbers.
+// ExampleAddition shows how to add numbers.
 func ExampleAddition() {
 	a := 2
 	b := 3
