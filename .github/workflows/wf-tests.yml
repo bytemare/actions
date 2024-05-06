@@ -19,5 +19,5 @@ jobs:
         go: [ '1.22', '1.21' ]
     uses: ./.github/workflows/test-go.yml
     with:
-      command: cd .github && make test
+      command: go test -v -vet=all ./...
       version: ${{ matrix.go }}

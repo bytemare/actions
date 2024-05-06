@@ -18,7 +18,7 @@ jobs:
   Lint:
     uses: ./.github/workflows/golangci-lint.yml
     with:
-      config-path: ./.github/.golangci.yml
+      config-path: ./.github/golangci.yml
       scope: ./...
 
   Analyze:

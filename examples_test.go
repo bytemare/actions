@@ -12,4 +12,6 @@ func Example_addition() {
 	b := 3
 
 	fmt.Printf("%d + %d = %d\n", a, b, internal.Addition(a, b))
+
+	// Output: 2 + 3 = 5
 }
