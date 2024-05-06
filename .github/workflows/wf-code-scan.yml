@@ -16,13 +16,13 @@ permissions: read-all
 
 jobs:
   Lint:
-    uses: .//.github/workflows/golangci-lint.yml
+    uses: ./.github/workflows/golangci-lint.yml
     with:
       config-path: ./.github/.golangci.yml
       scope: ./...
 
   Analyze:
-    uses: .//.github/workflows/scan-go.yml
+    uses: ./.github/workflows/scan-go.yml
     with:
       sonar-configuration: .github/sonar-project.properties
     secrets:
