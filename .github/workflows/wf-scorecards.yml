@@ -1,0 +1,23 @@
+name: Scorecard Analysis Workflow
+on:
+  # Only the default branch is supported. By default all modifications trigger the workflow.
+  branch_protection_rule:
+  schedule:
+    # Weekly on Saturdays.
+    - cron: '30 1 * * 6'
+  push:
+    branches: [ main ]
+
+# Declare default permissions as read-only.
+permissions: read-all
+
+jobs:
+  Analysis:
+    permissions:
+      # Needed for Code scanning upload
+      security-events: write
+      # Needed for GitHub OIDC token if publish_results is true
+      id-token: write
+    uses: ./.github/workflows/scorecard.yml
+    secrets:
+      token: ${{ secrets.SCORECARD_TOKEN }}

@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+# Declare default permissions as read-only.
+permissions: read-all
+
+jobs:
+  Test:
+    strategy:
+      fail-fast: false
+      matrix:
+        go: [ '1.22', '1.21' ]
+    uses: ./.github/workflows/test-go.yml
+    with:
+      command: go test -v -vet=all ./...
+      version: ${{ matrix.go }}
