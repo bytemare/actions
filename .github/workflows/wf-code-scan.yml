@@ -1,0 +1,32 @@
+name: Code Scan
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  schedule:
+    # random HH:MM to avoid a load spike on GitHub Actions at 00:00
+    - cron: '4 1 * * *'
+
+# Declare default permissions as read-only.
+permissions: read-all
+
+jobs:
+  Lint:
+    uses: .//.github/workflows/golangci-lint.yml
+    with:
+      config-path: ./.github/.golangci.yml
+      scope: ./...
+
+  Analyze:
+    uses: .//.github/workflows/scan-go.yml
+    with:
+      sonar-configuration: .github/sonar-project.properties
+    secrets:
+      github: ${{ secrets.GITHUB_TOKEN }}
+      sonar: ${{ secrets.SONAR_TOKEN }}
+      codecov: ${{ secrets.CODECOV_TOKEN }}
+      semgrep: ${{ secrets.SEMGREP_APP_TOKEN }}
