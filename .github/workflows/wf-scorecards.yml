@@ -11,15 +11,10 @@ on:
     # All branches are supported.
     branches: [ main ]
 
-permissions: read-all
+permissions: {}
 
 jobs:
   analysis:
-    permissions:
-      # Needed for Code scanning upload
-      security-events: write
-      # Needed for GitHub OIDC token if publish_results is true
-      id-token: write
     uses: ./.github/workflows/scorecard.yml
     secrets:
       token: ${{ secrets.SCORECARD_TOKEN }}
