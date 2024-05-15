@@ -1,11 +1,11 @@
 name: Scorecard Analysis Workflow
 on:
-  # Only the default branch is supported. By default all modifications trigger the workflow.
-  branch_protection_rule:
   schedule:
     # Weekly on Saturdays.
     - cron: '30 1 * * 6'
   push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
 
 # Declare default permissions as read-only.
