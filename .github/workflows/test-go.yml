@@ -1,5 +1,7 @@
 name: Test Go
 
+permissions: {}
+
 on:
   workflow_call:
     inputs:
@@ -13,12 +15,15 @@ on:
         required: false
         type: string
 
-permissions: {}
-
 jobs:
   Test:
     runs-on: ubuntu-latest
     steps:
+      - uses: step-security/harden-runner@9ff9d14760a73102d9fa2f47131624137f50ead8
+        with:
+          disable-sudo: true
+          egress-policy: audit
+
       - name: Init go
         uses: bytemare/actions/init-go@4166ee8110554c18c03ad257a3191ee9901f2bd6
         with:
