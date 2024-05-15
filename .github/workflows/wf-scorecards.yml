@@ -1,23 +1,40 @@
-#name: Scorecard Analysis Workflow
-#on:
-#  schedule:
-#    # Weekly on Saturdays.
-#    - cron: '30 1 * * 6'
-#  push:
-#    branches: [ main ]
-#  pull_request:
-#    branches: [ main ]
-#
-## Declare default permissions as read-only.
-#permissions: read-all
-#
-#jobs:
-#  Analysis:
-#    permissions:
-#      # Needed for Code scanning upload
-#      security-events: write
-#      # Needed for GitHub OIDC token if publish_results is true
-#      id-token: write
-#    uses: ./.github/workflows/scorecard.yml
-#    secrets:
-#      token: ${{ secrets.SCORECARD_TOKEN }}
+name: Scorecard analysis workflow
+on:
+  push:
+    # Only the default branch is supported.
+    branches:
+      - main
+  schedule:
+    # Weekly on Saturdays.
+    - cron: '30 1 * * 6'
+  pull_request:
+    # All branches are supported.
+    branches:
+      - main
+
+permissions: {}
+
+jobs:
+  analysis:
+    permissions:
+      # Needed if using Code scanning alerts
+      security-events: write
+      # Needed for GitHub OIDC token if publish_results is true
+      id-token: write
+      # Needed for nested workflow
+      actions: read
+      attestations: read
+      checks: read
+      contents: read
+      deployments: read
+      issues: read
+      discussions: read
+      packages: read
+      pages: read
+      pull-requests: read
+      repository-projects: read
+      statuses: read
+
+    uses: ./.github/workflows/scorecard.yml
+    secrets:
+      token: ${{ secrets.SCORECARD_TOKEN }}
