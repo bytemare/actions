@@ -1,15 +1,16 @@
-name: Scorecard Analysis Workflow
-
+name: Scorecard analysis workflow
 on:
+  push:
+    # Only the default branch is supported.
+    branches:
+      - main
   schedule:
     # Weekly on Saturdays.
     - cron: '30 1 * * 6'
-  push:
-    branches: [ main ]
   pull_request:
+    # All branches are supported.
     branches: [ main ]
 
-# Declare default permissions as read-only.
 permissions: read-all
 
 jobs:
