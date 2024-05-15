@@ -11,7 +11,7 @@ on:
     # All branches are supported.
     branches: [ main ]
 
-permissions: {}
+permissions: read-all
 
 jobs:
   analysis:
