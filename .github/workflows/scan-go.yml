@@ -31,7 +31,7 @@ jobs:
       command: ${{ inputs.cover-command }}
 
   Semgrep:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       SEMGREP_APP_TOKEN: ${{ secrets.semgrep }}
     container:
