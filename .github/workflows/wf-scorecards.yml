@@ -14,7 +14,7 @@ on:
 permissions: read-all
 
 jobs:
-  Analysis:
+  analysis:
     permissions:
       # Needed for Code scanning upload
       security-events: write
