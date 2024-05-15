@@ -11,7 +11,7 @@ on:
     # All branches are supported.
     branches: [ main ]
 
-permissions: read-all
+permissions: {}
 
 jobs:
   analysis:
@@ -20,6 +20,19 @@ jobs:
       security-events: write
       # Needed for GitHub OIDC token if publish_results is true
       id-token: write
+      # Needed for nested workflow
+      actions: read
+      checks: read
+      contents: read
+      deployments: read
+      issues: read
+      discussions: read
+      packages: read
+      pages: read
+      pull-requests: read
+      repository-projects: read
+      statuses: read
+
     uses: ./.github/workflows/scorecard.yml
     secrets:
       token: ${{ secrets.SCORECARD_TOKEN }}
