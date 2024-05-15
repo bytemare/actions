@@ -19,6 +19,6 @@ runs:
           github.com:443
           storage.googleapis.com:443
 
-    - uses: codecov/codecov-action@5ecb98a3c6b747ed38dc09f787459979aebb39be
+    - uses: codecov/codecov-action@fd624e50e79ee493cc04fa548dbb550c038281da
       with:
         file: ${{ inputs.coverage-report }}
