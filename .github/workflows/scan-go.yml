@@ -51,7 +51,7 @@ jobs:
         with:
           name: ${{ needs.Cover.outputs.coverage-output-artefact }}
 
-      - uses: bytemare/actions/codecov@03e258f6a2774cc46a2cdb273aae1612cfda7272
+      - uses: bytemare/actions/codecov@9d34c2ecdaa6860cd53d058f47f338c07289812d
         env:
           CODECOV_TOKEN: ${{ secrets.codecov }}
         with:
@@ -68,7 +68,7 @@ jobs:
         with:
           name: ${{ needs.Cover.outputs.coverage-output-artefact }}
 
-      - uses: bytemare/actions/sonar-scan@03e258f6a2774cc46a2cdb273aae1612cfda7272
+      - uses: bytemare/actions/sonar-scan@9d34c2ecdaa6860cd53d058f47f338c07289812d
         env:
           GITHUB_TOKEN: ${{ secrets.github }}
           SONAR_TOKEN: ${{ secrets.sonar }}
