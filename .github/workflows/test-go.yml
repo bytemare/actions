@@ -1,7 +1,5 @@
 name: Test Go
 
-permissions: {}
-
 on:
   workflow_call:
     inputs:
@@ -14,6 +12,8 @@ on:
         description: 'The Go version to use'
         required: false
         type: string
+
+permissions: {}
 
 jobs:
   Test:
