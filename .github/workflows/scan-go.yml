@@ -11,6 +11,7 @@ on:
       go-version-file:
         description: 'Go mod file'
         required: true
+        type: string
       sonar-configuration:
         required: true
         description: "Path to the configuration file"
