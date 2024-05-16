@@ -27,7 +27,15 @@ permissions: {}
 jobs:
   govulncheck:
     runs-on: ubuntu-latest
-    uses: golang/govulncheck-action@3a32958c2706f7048305d5a2e53633d7e37e97d0
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@9ff9d14760a73102d9fa2f47131624137f50ead8
+        with:
+          disable-sudo: true
+          egress-policy: audit
+
+      - name: govulncheck
+        uses: golang/govulncheck-action@3a32958c2706f7048305d5a2e53633d7e37e97d0
 
   Cover:
     uses: ./.github/workflows/coverage-go.yml
