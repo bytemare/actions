@@ -1,4 +1,4 @@
-name: Test Go
+name: "Go Coverage"
 
 on:
   workflow_call:

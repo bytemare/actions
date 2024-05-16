@@ -25,6 +25,10 @@ on:
 permissions: {}
 
 jobs:
+  govulncheck:
+    runs-on: ubuntu-latest
+    uses: golang/govulncheck-action@3a32958c2706f7048305d5a2e53633d7e37e97d0
+
   Cover:
     uses: ./.github/workflows/coverage-go.yml
     with:

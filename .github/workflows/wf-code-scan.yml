@@ -1,10 +1,10 @@
 name: Code Scan
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-  push:
+  pull_request:
     branches:
       - main
   schedule:
