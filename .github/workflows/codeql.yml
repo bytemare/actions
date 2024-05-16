@@ -21,7 +21,8 @@ jobs:
       fail-fast: false
 
     steps:
-      - uses: step-security/harden-runner@9ff9d14760a73102d9fa2f47131624137f50ead8
+      - name: Harden Runner
+        uses: step-security/harden-runner@9ff9d14760a73102d9fa2f47131624137f50ead8
         with:
           disable-sudo: true
           egress-policy: block
@@ -37,7 +38,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b
 
-      # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
         uses: github/codeql-action/init@7fd4900b29c9865d61ace089788ac5c913cb730b
         with:

@@ -18,7 +18,8 @@ jobs:
       # Needed for GitHub OIDC token if publish_results is true
       id-token: write
     steps:
-      - uses: step-security/harden-runner@9ff9d14760a73102d9fa2f47131624137f50ead8
+      - name: Harden Runner
+        uses: step-security/harden-runner@9ff9d14760a73102d9fa2f47131624137f50ead8
         with:
           disable-sudo: true
           egress-policy: block
