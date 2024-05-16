@@ -8,6 +8,9 @@ on:
         required: false
         type: string
         default: go test -v -race -covermode=atomic -coverpkg=./...
+      go-version-file:
+        description: 'Go mod file'
+        required: true
       sonar-configuration:
         required: true
         description: "Path to the configuration file"
@@ -31,7 +34,7 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@9ff9d14760a73102d9fa2f47131624137f50ead8
         with:
-          #disable-sudo: true
+          disable-sudo: true
           egress-policy: block
           allowed-endpoints: >
             github.com:443
@@ -43,7 +46,7 @@ jobs:
       - name: govulncheck
         uses: golang/govulncheck-action@3a32958c2706f7048305d5a2e53633d7e37e97d0
         with:
-          check-latest: true
+          go-version-file: ${{ inputs.go-version }}
 
   Cover:
     uses: ./.github/workflows/coverage-go.yml

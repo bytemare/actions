@@ -2,7 +2,7 @@ name: 'init-go'
 description: 'Check out the repo and setup-go'
 inputs:
   go-mod:
-    description: 'Go mod file (defaults to ./go.mod)'
+    description: 'Go mod file'
     required: false
   version:
     description: 'Go versions to use'
