@@ -27,7 +27,6 @@ jobs:
       contents: read
     uses: ./.github/workflows/scan-go.yml
     with:
-      go-version-file: go.mod
       sonar-configuration: .github/sonar-project.properties
     secrets:
       github: ${{ secrets.GITHUB_TOKEN }}
