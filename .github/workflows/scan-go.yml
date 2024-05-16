@@ -39,7 +39,7 @@ jobs:
     if: (github.actor != 'dependabot[bot]')
     steps:
       - name: Checkout repo
-        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
       - run: semgrep ci
 
   Codecov:
@@ -51,7 +51,7 @@ jobs:
         with:
           name: ${{ needs.Cover.outputs.coverage-output-artefact }}
 
-      - uses: bytemare/actions/codecov@9d34c2ecdaa6860cd53d058f47f338c07289812d
+      - uses: bytemare/actions/codecov@6f04b553bef3add2de87875333c005606d419664
         env:
           CODECOV_TOKEN: ${{ secrets.codecov }}
         with:
@@ -68,7 +68,7 @@ jobs:
         with:
           name: ${{ needs.Cover.outputs.coverage-output-artefact }}
 
-      - uses: bytemare/actions/sonar-scan@9d34c2ecdaa6860cd53d058f47f338c07289812d
+      - uses: bytemare/actions/sonar-scan@6f04b553bef3add2de87875333c005606d419664
         env:
           GITHUB_TOKEN: ${{ secrets.github }}
           SONAR_TOKEN: ${{ secrets.sonar }}
