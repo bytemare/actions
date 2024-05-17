@@ -1,3 +1,3 @@
 # Actions
 
-Reusable hardened GitHub Actions and Workflows tailored for Go.
+Reusable hardened GitHub Actions tailored for Go.
