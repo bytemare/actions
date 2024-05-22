@@ -4,9 +4,6 @@ inputs:
   configuration:
     required: true
     description: "Path to the configuration file."
-  coverage-report:
-    required: false
-    description: "Path to the coverage report file."
 
 runs:
   using: "composite"
@@ -26,8 +23,7 @@ runs:
       with:
         fetch-depth: 0
 
-    - uses: SonarSource/sonarcloud-github-action@3da91d8a6aff5e898114575b30c6dc1e4787a254
+    - uses: SonarSource/sonarcloud-github-action@a69a8edf1df352adece45acf0c3b810050657eda
       with:
         args: >
           -Dproject.settings=${{ inputs.configuration }}
-          -Dsonar.go.coverage.reportPaths=${{ inputs.coverage-report }}
