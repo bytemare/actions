@@ -30,4 +30,4 @@ runs:
       with:
         args: >
           -Dproject.settings=${{ inputs.configuration }}
-          -Dsonar.go.coverage.reportPaths=${{ coverage-report }}
+          -Dsonar.go.coverage.reportPaths=${{ inputs.coverage-report }}
