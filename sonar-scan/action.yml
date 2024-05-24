@@ -4,9 +4,6 @@ inputs:
   configuration:
     required: true
     description: "Path to the configuration file."
-  coverage:
-    required: false
-    description: "Path to the coverage report file."
 
 runs:
   using: "composite"
@@ -43,4 +40,3 @@ runs:
       with:
         args: >
           -Dproject.settings=${{ inputs.configuration }}
-          -Dsonar.go.coverage.reportPaths=${{ inputs.coverage }}
