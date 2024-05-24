@@ -33,6 +33,7 @@ runs:
     - name: Setup Go
       uses: actions/setup-go@4ab57d7ea2fd0c9948210b2e0784e280674e7144
       with:
+        cache: false
         go-version-file: ${{ inputs.go-mod }}
         go-version: ${{ inputs.go-version }}
 
