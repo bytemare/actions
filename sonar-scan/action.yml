@@ -4,9 +4,6 @@ inputs:
   configuration:
     required: true
     description: "Path to the configuration file."
-  coverage:
-    required: false
-    description: "Path to the coverage report file."
 
 runs:
   using: "composite"
@@ -36,6 +33,7 @@ runs:
     - name: Setup Go
       uses: actions/setup-go@4ab57d7ea2fd0c9948210b2e0784e280674e7144
       with:
+        cache: false
         go-version-file: ${{ inputs.go-mod }}
         go-version: ${{ inputs.go-version }}
 
@@ -43,4 +41,3 @@ runs:
       with:
         args: >
           -Dproject.settings=${{ inputs.configuration }}
-          -Dsonar.go.coverage.reportPaths=${{ inputs.coverage }}
