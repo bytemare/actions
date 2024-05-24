@@ -12,7 +12,7 @@ runs:
   using: "composite"
   steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@9ff9d14760a73102d9fa2f47131624137f50ead8
+      uses: step-security/harden-runner@f4f3f445f343c08c93d7771433e8dee4267e05b9
       with:
         disable-sudo: true
         egress-policy: block
@@ -29,7 +29,7 @@ runs:
           sum.golang.org:443
 
     - name: Checkout repo
-      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+      uses: actions/checkout@b80ff79f1755d06ba70441c368a6fe801f5f3a62
       with:
         fetch-depth: 0
 
@@ -39,7 +39,7 @@ runs:
         go-version-file: ${{ inputs.go-mod }}
         go-version: ${{ inputs.go-version }}
 
-    - uses: SonarSource/sonarcloud-github-action@a69a8edf1df352adece45acf0c3b810050657eda
+    - uses: SonarSource/sonarcloud-github-action@13d84ab51ea6fc29e22a1288ec28cc71fd2eb19e
       with:
         args: >
           -Dproject.settings=${{ inputs.configuration }}
