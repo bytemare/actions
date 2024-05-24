@@ -9,7 +9,7 @@ runs:
   using: "composite"
   steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@9ff9d14760a73102d9fa2f47131624137f50ead8
+      uses: step-security/harden-runner@f4f3f445f343c08c93d7771433e8dee4267e05b9
       with:
         disable-sudo: true
         egress-policy: block
@@ -20,6 +20,6 @@ runs:
           github.com:443
           storage.googleapis.com:443
 
-    - uses: codecov/codecov-action@d42a336584211c4f940f39382853503887003197
+    - uses: codecov/codecov-action@a1504ae490860991a4176aed26b42989650a91d7
       with:
         file: ${{ inputs.coverage-report }}
