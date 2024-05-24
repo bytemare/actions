@@ -18,6 +18,7 @@ runs:
         egress-policy: block
         allowed-endpoints: >
           api.github.com:443
+          ea6ne4j2sb.execute-api.eu-central-1.amazonaws.com:443
           github.com:443
           golang.org:443
           objects.githubusercontent.com:443
