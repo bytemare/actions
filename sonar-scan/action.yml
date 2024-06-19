@@ -37,6 +37,11 @@ runs:
         go-version-file: ${{ inputs.go-mod }}
         go-version: ${{ inputs.go-version }}
 
+    - name: Sonar Coverage
+      run: go test -v -race -covermode=atomic -coverpkg=./...-coverprofile=.github/coverage.out ./... &&
+            ls -lah
+            exit 0
+
     - uses: SonarSource/sonarcloud-github-action@13d84ab51ea6fc29e22a1288ec28cc71fd2eb19e
       with:
         args: >
