@@ -40,8 +40,6 @@ runs:
     - name: Sonar Coverage
       shell: bash
       run: go test -v -race -covermode=atomic -coverpkg=./...-coverprofile=.github/coverage.out ./... &&
-            ls -lah
-            exit 0
 
     - uses: SonarSource/sonarcloud-github-action@13d84ab51ea6fc29e22a1288ec28cc71fd2eb19e
       with:
