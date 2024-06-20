@@ -2,8 +2,26 @@ name: 'sonar-scan'
 description: 'Scan code with SonarSource'
 inputs:
   configuration:
-    required: true
     description: "Path to the configuration file."
+    required: true
+  cover-command:
+    description: 'The command to use to run the coverage (e.g. go test -cover...)'
+    required: false
+    default: go test -v -race -covermode=atomic -coverpkg=./...
+  cover-output-file:
+    description: 'The output file name to store the coverage results in (defaults to .github/coverage.out)'
+    required: false
+    default: .github/coverage.out
+  cover-scope:
+    description: 'The location to run the command on (defaults to ./...)'
+    required: false
+    default: ./...
+  go-mod:
+    description: 'Go mod file'
+    required: false
+  version:
+    description: 'Go versions to use'
+    required: false
 
 runs:
   using: "composite"
@@ -39,7 +57,7 @@ runs:
 
     - name: Sonar Coverage
       shell: bash
-      run: go test -v -race -covermode=atomic -coverpkg=./... -coverprofile=.github/coverage.out ./... && exit 0
+      run: ${{ inputs.cover-command }} -coverprofile=${{ inputs.cover-output-file }} ${{ inputs.cover-scope }}
 
     - uses: SonarSource/sonarcloud-github-action@13d84ab51ea6fc29e22a1288ec28cc71fd2eb19e
       with:
