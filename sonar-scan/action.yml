@@ -38,6 +38,7 @@ runs:
         go-version: ${{ inputs.go-version }}
 
     - name: Sonar Coverage
+      shell: bash
       run: go test -v -race -covermode=atomic -coverpkg=./...-coverprofile=.github/coverage.out ./... &&
             ls -lah
             exit 0
