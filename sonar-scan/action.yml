@@ -60,7 +60,7 @@ runs:
 
     - name: Code Coverage
       shell: bash
-      run: ${{ inputs.cover-command }} -coverprofile=${{ inputs.cover-output-file }} ${{ inputs.cover-scope }}
+      run: ${{ inputs.coverage-command }} -coverprofile=${{ inputs.coverage-output-file }} ${{ inputs.coverage-scope }}
 
     - uses: SonarSource/sonarcloud-github-action@e44258b109568baa0df60ed515909fc6c72cba92
       with:
