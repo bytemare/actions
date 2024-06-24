@@ -4,21 +4,21 @@ inputs:
   configuration:
     description: "Path to the configuration file."
     required: true
-    coverage-command:
-      description: 'The command to use to run the tests (defaults to go test -v -race -covermode=atomic -coverpkg=./...)'
-      required: false
-      type: string
-      default: go test -v -race -covermode=atomic -coverpkg=./...
-    coverage-output-file:
-      description: 'The output file name to store the coverage results in (defaults to coverage.out)'
-      required: false
-      type: string
-      default: coverage.out
-    coverage-scope:
-      description: 'The location to run the command on (defaults to ./...)'
-      required: false
-      type: string
-      default: ./...
+  coverage-command:
+    description: 'The command to use to run the tests (defaults to go test -v -race -covermode=atomic -coverpkg=./...)'
+    required: false
+    type: string
+    default: go test -v -race -covermode=atomic -coverpkg=./...
+  coverage-output-file:
+    description: 'The output file name to store the coverage results in (defaults to coverage.out)'
+    required: false
+    type: string
+    default: coverage.out
+  coverage-scope:
+   description: 'The location to run the command on (defaults to ./...)'
+   required: false
+   type: string
+   default: ./...
   go-mod:
     description: 'Go mod file'
     required: false
