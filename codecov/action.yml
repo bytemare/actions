@@ -20,6 +20,6 @@ runs:
           github.com:443
           storage.googleapis.com:443
 
-    - uses: codecov/codecov-action@cdaae0e2435e46624586ebce3148ef71c76c886e
+    - uses: codecov/codecov-action@abe5d5a96bcb3214db4d8734f040e1d9a6f5a7bb
       with:
         file: ${{ inputs.coverage-report }}
