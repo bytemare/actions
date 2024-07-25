@@ -30,7 +30,7 @@ runs:
   using: "composite"
   steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@d7cf128fba8343bb6666acf77451879c0530cac8
+      uses: step-security/harden-runner@f0db2aa8a570959027d6be2a227028ad19fd9e8f
       with:
         disable-sudo: true
         egress-policy: block
@@ -62,7 +62,7 @@ runs:
       shell: bash
       run: ${{ inputs.coverage-command }} -coverprofile=${{ inputs.coverage-output-file }} ${{ inputs.coverage-scope }}
 
-    - uses: SonarSource/sonarcloud-github-action@b7cc8bf2004f4a9ef190137d8831630e9ae5d2e7
+    - uses: SonarSource/sonarcloud-github-action@f5003fc9688ade81ce47b57a3fa97a8d3f12de4c
       with:
         args: >
           -Dproject.settings=${{ inputs.configuration }}
