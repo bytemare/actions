@@ -4,7 +4,7 @@ inputs:
   go-mod:
     description: 'Go mod file'
     required: false
-  version:
+  go-version:
     description: 'Go versions to use'
     required: false
 runs:
