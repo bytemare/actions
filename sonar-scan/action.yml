@@ -47,7 +47,7 @@ runs:
           sum.golang.org:443
 
     - name: Checkout repo
-      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+      uses: actions/checkout@6b42224f41ee5dfe5395e27c8b2746f1f9955030
       with:
         fetch-depth: 0
 
@@ -62,7 +62,7 @@ runs:
       shell: bash
       run: ${{ inputs.coverage-command }} -coverprofile=${{ inputs.coverage-output-file }} ${{ inputs.coverage-scope }}
 
-    - uses: SonarSource/sonarcloud-github-action@eb211723266fe8e83102bac7361f0a05c3ac1d1b
+    - uses: SonarSource/sonarcloud-github-action@2900b02098e8818d13060762140fad033f7b746d
       with:
         args: >
           -Dproject.settings=${{ inputs.configuration }}
