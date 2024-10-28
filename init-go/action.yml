@@ -7,6 +7,9 @@ inputs:
   go-version:
     description: 'Go versions to use'
     required: false
+  cache:
+    description: 'Whether to use the cache'
+    required: false
 runs:
   using: "composite"
   steps:
@@ -35,3 +38,5 @@ runs:
         go-version-file: ${{ inputs.go-mod }}
         cache-dependency-path: "**/go.sum"
         go-version: ${{ inputs.go-version }}
+        cache: ${{ inputs.cache }}
+
