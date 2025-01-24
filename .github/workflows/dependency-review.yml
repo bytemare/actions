@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@18f6947f131da60743dc12d2a22ff28c2b4ea87f
+        uses: step-security/harden-runner@cb605e52c26070c328afc4562f0b4ada7618a84e
         with:
           disable-sudo: true
           egress-policy: block
@@ -29,4 +29,4 @@ jobs:
       - name: 'Checkout Repository'
         uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
       - name: 'Dependency Review'
-        uses: actions/dependency-review-action@3b139cfc5fae8b618d3eae3675e383bb1769c019
+        uses: actions/dependency-review-action@67ca5cc413c4ccfd86d5fac7524388b55fe6d493
