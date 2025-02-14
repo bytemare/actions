@@ -62,7 +62,7 @@ runs:
       shell: bash
       run: ${{ inputs.coverage-command }} -coverprofile=${{ inputs.coverage-output-file }} ${{ inputs.coverage-scope }}
 
-    - uses: SonarSource/sonarqube-scan-action@73cb22d49a457b7fc2ba581a30e5b9263161d38c
+    - uses: SonarSource/sonarqube-scan-action@0303d6b62e310685c0e34d0b9cde218036885c4d
       with:
         args: >
           -Dproject.settings=${{ inputs.configuration }}
