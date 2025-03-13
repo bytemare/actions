@@ -30,7 +30,7 @@ runs:
   using: "composite"
   steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@6ec6af7d622602bd852df48848f3cae95c760a48
+      uses: step-security/harden-runner@8a09271fed8277ab7fb02dbb5917c8d0e78323b4
       with:
         disable-sudo: true
         egress-policy: block
@@ -52,7 +52,7 @@ runs:
         fetch-depth: 0
 
     - name: Setup Go
-      uses: actions/setup-go@5a083d0e9a84784eb32078397cf5459adecb4c40
+      uses: actions/setup-go@c4c114188661c0fa735e5b938764519fc6e8efa9
       with:
         cache: false
         go-version-file: ${{ inputs.go-mod }}
@@ -62,7 +62,7 @@ runs:
       shell: bash
       run: ${{ inputs.coverage-command }} -coverprofile=${{ inputs.coverage-output-file }} ${{ inputs.coverage-scope }}
 
-    - uses: SonarSource/sonarqube-scan-action@f932b663acf3c4b8b27c673927b5ac744638b17b
+    - uses: SonarSource/sonarqube-scan-action@961628671dd1017f26f7f0b1ff7bb6236182cc71
       with:
         args: >
           -Dproject.settings=${{ inputs.configuration }}
