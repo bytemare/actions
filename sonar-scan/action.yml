@@ -30,7 +30,7 @@ runs:
   using: "composite"
   steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@8a09271fed8277ab7fb02dbb5917c8d0e78323b4
+      uses: step-security/harden-runner@f054d811b5b89fde2f954d54dc8622ec3aaab9ab
       with:
         disable-sudo: true
         egress-policy: block
@@ -52,7 +52,7 @@ runs:
         fetch-depth: 0
 
     - name: Setup Go
-      uses: actions/setup-go@c4c114188661c0fa735e5b938764519fc6e8efa9
+      uses: actions/setup-go@0aaccfd150d50ccaeb58ebd88d36e91967a5f35b
       with:
         cache: false
         go-version-file: ${{ inputs.go-mod }}
