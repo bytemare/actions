@@ -1,0 +1,28 @@
+name: Sonar Scan
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions: {}
+
+jobs:
+  SonarQube:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: bytemare/actions/sonar-scan@89b0dafa953d3bebf7458d7b05a726bd2975c7e7
+        env:
+          GITHUB_TOKEN: ${{ secrets.github }}
+          SONAR_TOKEN: ${{ secrets.sonar }}
+        with:
+          configuration: ${{ inputs.sonar-configuration }}
+          coverage-output-file: ${{ inputs.coverage-output-file }}
+          go-mod: ${{ inputs.go-mod }}

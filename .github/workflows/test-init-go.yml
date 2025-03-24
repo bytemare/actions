@@ -1,0 +1,28 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions: {}
+
+jobs:
+  Test Init Go:
+    strategy:
+      fail-fast: false
+      matrix:
+        go: [ '1.24', '1.23', '1.22' ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Init go
+        uses: ./init-go
+        with:
+          go-mod: "**/go.mod"
+          go-version: ${{ matrix.go }}
+
+      - name: Run Tests
+        run: go test -v -vet=all ./...
