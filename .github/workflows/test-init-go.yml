@@ -11,7 +11,7 @@ on:
 permissions: {}
 
 jobs:
-  Test Init Go:
+  Test:
     strategy:
       fail-fast: false
       matrix:
