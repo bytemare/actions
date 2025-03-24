@@ -24,8 +24,8 @@ jobs:
           fetch-depth: 0
       - uses: ./sonar-scan
         env:
-          GITHUB_TOKEN: ${{ secrets.github }}
-          SONAR_TOKEN: ${{ secrets.sonar }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           configuration: ${{ inputs.sonar-configuration }}
           coverage-output-file: ${{ inputs.coverage-output-file }}
