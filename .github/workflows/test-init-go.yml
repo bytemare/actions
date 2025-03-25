@@ -40,7 +40,6 @@ jobs:
       - name: Init go
         uses: ./init-go
         with:
-          go-mod: "**/go.mod"
           go-version: ${{ matrix.go }}
 
       - name: Run Tests
