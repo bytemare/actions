@@ -29,23 +29,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Harden Runner
-      uses: step-security/harden-runner@b131ca5ebfca4930fe6d4a3e82d1e386b4873c94
-      with:
-        disable-sudo: true
-        egress-policy: block
-        allowed-endpoints: >
-          api.github.com:443
-          ea6ne4j2sb.execute-api.eu-central-1.amazonaws.com:443
-          github.com:443
-          golang.org:443
-          objects.githubusercontent.com:443
-          proxy.golang.org:443
-          scanner.sonarcloud.io:443
-          sonarcloud.io:443
-          storage.googleapis.com:443
-          sum.golang.org:443
-
     - name: Init go
       uses: ./init-go
       with:
