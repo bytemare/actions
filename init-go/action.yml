@@ -16,7 +16,7 @@ runs:
         fetch-depth: 0
 
     - name: Setup Go
-      uses: actions/setup-go@bb65d8857b81c74a671e81f935d3362a5d718e2f
+      uses: actions/setup-go@29694d72cd5e7ef3b09496b39f28a942af47737e
       with:
         go-version-file: ${{ inputs.go-mod }}
         cache-dependency-path: "**/go.sum"
