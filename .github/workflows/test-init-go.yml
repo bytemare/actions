@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@1705d777e57a4bef37eaf01e889e6ed215e1f532
+        uses: step-security/harden-runner@002fdce3c6a235733a90a27c80493a3241e56863
         with:
           disable-sudo: true
           egress-policy: block
