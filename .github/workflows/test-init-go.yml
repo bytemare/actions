@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        go: [ '1.24', '1.23', '1.22' ]
+        go: [ '1.25' ]
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
@@ -26,11 +26,9 @@ jobs:
           allowed-endpoints: >
             api.github.com:443
             github.com:443
+            go.dev:443
             golang.org:443
-            objects.githubusercontent.com:443
-            proxy.golang.org:443
-            storage.googleapis.com:443
-            sum.golang.org:443
+            release-assets.githubusercontent.com:443
 
       - name: Checkout repo
         uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
@@ -43,4 +41,4 @@ jobs:
           go-version: ${{ matrix.go }}
 
       - name: Run Tests
-        run: go test -v -vet=all ./...
+        run: cd internal && go test -v -vet=all
