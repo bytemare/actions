@@ -4,6 +4,7 @@ inputs:
   go-mod:
     description: 'Go mod file'
     required: false
+    default: '**/go.mod'
   go-version:
     description: 'Go versions to use'
     required: false
