@@ -4,7 +4,10 @@ inputs:
   go-mod:
     description: 'Go mod file'
     required: false
-    default: "**/go.mod"
+  go-sum:
+    description: 'Go mod file'
+    required: false
+    default: "**/go.sum"
   go-version:
     description: 'Go versions to use'
     required: false
@@ -24,5 +27,5 @@ runs:
       uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5
       with:
         go-version-file: ${{ inputs.go-mod }}
-        cache-dependency-path: "**/go.sum"
+        cache-dependency-path: ${{ inputs.go-sum }}
         go-version: ${{ inputs.go-version }}
