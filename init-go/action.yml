@@ -36,7 +36,7 @@ runs:
       run: mkdir -p "$HOME/.cache/go-build" "$HOME/go/pkg/mod"
 
     - name: Setup Go
-      uses: actions/setup-go@a5f9b05d2d216f63e13859e0d847461041025775
+      uses: actions/setup-go@def8c394e3ad351a79bc93815e4a585520fe993b
       with:
         go-version-file: ${{ inputs.go-mod }}
         cache-dependency-path: ${{ inputs.go-sum }}
